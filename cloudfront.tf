@@ -178,7 +178,7 @@ resource "aws_cloudfront_distribution" "lt_demo_web_app_cloudfront_distribution"
  * Cache policy for cloudfront distribution with compression enabled.
  */
 resource "aws_cloudfront_cache_policy" "lt_demo_web_app_cloudfront_cache_policy" {
-  name = "lt-demo-web-app-cloudfront-cache-policy"
+  name = "lt-demo-web-app-cloudfront-cache-policy-${local.env}"
 
   min_ttl     = 2
   default_ttl = 2

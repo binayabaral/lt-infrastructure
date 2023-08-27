@@ -62,17 +62,17 @@ data "aws_iam_policy_document" "lt_demo_backend_ec2_iam_role_policy" {
 }
 
 resource "aws_iam_role" "lt_demo_backend_ec2_role" {
-  name               = "lt-demo-backend-ec2-role"
+  name               = "lt-demo-backend-ec2-role-${local.env}"
   assume_role_policy = data.aws_iam_policy_document.lt_demo_backend_ec2_iam_assume_role_policy.json
 
   inline_policy {
-    name   = "lt-demo-backend-ec2-iam-role-policy"
+    name   = "lt-demo-backend-ec2-iam-role-policy-${local.env}"
     policy = data.aws_iam_policy_document.lt_demo_backend_ec2_iam_role_policy.json
   }
 }
 
 resource "aws_iam_instance_profile" "lt_demo_backend_ec2_instance_profile" {
-  name = "lt-demp-backend-ec2-instance-profile"
+  name = "lt-dem0-backend-ec2-instance-profile-${local.env}"
   role = aws_iam_role.lt_demo_backend_ec2_role.name
 }
 

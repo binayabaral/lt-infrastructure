@@ -23,10 +23,9 @@ jobs:
     steps:
       - name: resolve environment
         run: |
-          branch_ref=${{ github.head_ref || github.event.ref }}
-          branch_name=${branch_ref#refs/heads/}
+          branch_ref=${{ github.base_ref }}
 
-          if [[ "$branch_name" == "main" ]] || ${{ contains(github.event.inputs.environment, 'prod') }}; then
+          if [[ "$branch_ref" == "main" ]] || ${{ contains(github.event.inputs.environment, 'prod') }}; then
             echo "env_name=prod" >> $GITHUB_ENV
 
           else

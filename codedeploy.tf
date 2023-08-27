@@ -1,5 +1,5 @@
 resource "aws_iam_role" "codedeploy" {
-  name = "lt-demo-codedeploy-role"
+  name = "lt-demo-codedeploy-role-${local.env}"
 
   assume_role_policy = <<EOF
 {
@@ -24,7 +24,7 @@ resource "aws_iam_role_policy_attachment" "aws_code_deploy_role_policy_attachmen
 }
 
 resource "aws_codedeploy_app" "lt_demo_code_deploy_application" {
-  name = "backend"
+  name = "backend-${local.env}"
 }
 
 resource "aws_codedeploy_deployment_group" "lt_demo_code_deploy_group" {
